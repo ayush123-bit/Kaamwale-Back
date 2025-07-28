@@ -214,7 +214,20 @@ export const googleLogin = async (req, res) => {
       });
     }
 
-   return res.status(200).json({ success: true, user });
+    
+    const authToken = jwt.sign(
+      { userId: user._id },
+      process.env.SECRET_KEY,
+      { expiresIn: '7d' }
+    );
+
+    res.cookie("token", authToken, {
+      httpOnly: true,
+      sameSite: "None", 
+      secure: true     
+    });
+
+    return res.status(200).json({ success: true, user });
 
   } catch (error) {
     console.error('Google login failed:', error);
