@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(cookieParser());
 const corsOptions = {
-    origin:'https://scintillating-kelpie-de0c3d.netlify.app/',
+    origin:'https://scintillating-kelpie-de0c3d.netlify.app',
     credentials:true
 }
 
